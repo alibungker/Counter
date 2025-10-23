@@ -140,8 +140,10 @@ flowchart LR
   E --> F[Display: Update UI + TTS]
   F --> G[Operator: Finish/Skip/Transfer]
   G --> H[DB: Update Status Final]
+```
 
 ### 6.2 Sequence Diagram
+```mermaid
 sequenceDiagram
   participant User as Pelanggan
   participant Kiosk
@@ -155,4 +157,123 @@ sequenceDiagram
   Operator->>API: POST /counters/{id}/call-next
   API->>Display: Broadcast ticket.called
   Display->>Display: Render dan ucapkan TTS
+```
 
+---
+
+## 7. API Endpoint Ringkas
+
+| Endpoint | Method | Deskripsi |
+|-----------|--------|-----------|
+| `/api/tickets` | POST | Buat tiket baru |
+| `/api/counters/{id}/call-next` | POST | Ambil tiket berikutnya |
+| `/api/calls/{id}/recall` | POST | Panggil ulang |
+| `/api/calls/{id}/finish` | POST | Selesaikan tiket |
+| `/api/calls/{id}/noshow` | POST | Tandai tidak hadir |
+| `/api/calls/{id}/skip` | POST | Lewati tiket |
+| `/api/reports` | GET | Ambil laporan harian |
+
+---
+
+## 8. Kebutuhan Keamanan
+
+- Autentikasi berbasis JWT / Session Laravel.  
+- HTTPS wajib di semua endpoint.  
+- Role-based authorization:  
+  - Admin: semua fitur  
+  - Teller/CS: akses loket masing-masing  
+  - Viewer: hanya laporan  
+- Audit log semua aksi penting (call, skip, transfer, finish).
+
+---
+
+## 9. Aspek Finansial & Analitik
+
+### 9.1 Perhitungan Biaya per Tiket
+BiayaPerTiket = (BiayaTetap + BiayaVariabel + BiayaSDM) / JumlahTiketBulanan
+
+| Komponen | Contoh |
+|-----------|--------|
+| Biaya Tetap | Server, Printer, TV |
+| Biaya Variabel | Kertas, Listrik, Bandwidth |
+| Biaya SDM | Gaji per jam × jam operasional |
+| Jumlah Tiket | Total tiket dalam periode laporan |
+
+### 9.2 KPI Operasional
+- Average Wait Time (≤ 7 menit)
+- Average Service Time
+- Tickets per Staff Hour
+- Utilisasi Loket (%)
+- No-show Rate (%)
+- Cost per Ticket (Rp)
+
+---
+
+## 10. Kriteria Penerimaan
+
+| No | Kriteria | Status |
+|----|-----------|--------|
+| 1 | Tiket dapat diambil dengan format A-XXX | ✅ |
+| 2 | Operator memanggil tiket dan tampil di display < 0.5s | ✅ |
+| 3 | Suara panggilan terdengar jelas (id-ID) | ✅ |
+| 4 | Laporan menampilkan total tiket dan waktu tunggu | ✅ |
+| 5 | Ekspor CSV berjalan normal | ✅ |
+
+---
+
+## 11. Rencana Implementasi
+
+### Tahap 1 – MVP
+- Modul Kiosk, Operator, Display, WebSocket, DB schema, API dasar.  
+- TTS menggunakan Web Speech API.
+
+### Tahap 2 – Laporan & Finansial
+- Laporan harian, biaya per tiket, SLA chart.
+
+### Tahap 3 – Fitur Lanjutan
+- TTS server-side (Polly/gTTS).  
+- Multi-branch dashboard.  
+- Digital signage/iklan saat idle.
+
+---
+
+## 12. Risiko & Mitigasi
+
+| Risiko | Dampak | Mitigasi |
+|---------|---------|----------|
+| Koneksi LAN putus | Display tidak realtime | Aktifkan polling setiap 3 detik |
+| Browser tidak mendukung TTS | Tidak ada suara panggilan | Gunakan TTS server-side |
+| Server overload | Delay panggilan | Gunakan Redis untuk cache nomor |
+| Operator salah input | Data tidak valid | Audit trail & undo terbatas |
+
+---
+
+## 13. Lampiran
+
+### 13.1 Data Dictionary
+| Field | Deskripsi |
+|--------|------------|
+| `tickets.status` | waiting, called, serving, done, noshow, skipped |
+| `services.code` | A=Teller, B=CS |
+| `calls.action` | call, recall, transfer, finish, noshow, skip |
+
+### 13.2 Template Kalimat TTS
+> "Nomor antrian **{CODE}**, menuju **Loket {N}**."
+
+### 13.3 Konfigurasi Default
+- Reset harian: 00:00
+- Bahasa: id-ID
+- Suara: Web Speech API (Chrome)
+- Jumlah loket: 5
+- Jumlah layanan: 2 (Teller, CS)
+
+---
+
+## 14. Penutup
+Dokumen ini menjadi dasar pengembangan dan pengujian sistem antrian teller/CS di lingkungan Bungker Corp dan instansi pengguna.  
+Semua pengembangan dan perubahan fitur wajib mengikuti spesifikasi dalam dokumen ini.
+
+---
+**Disusun oleh:**  
+_M. Ali Murtaza_  
+Divisi TI – Bungker Corp
