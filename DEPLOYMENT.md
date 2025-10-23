@@ -1,4 +1,4 @@
-# Deployment Guide (2.DEPLOYMENT.md)
+# 2.Deployment Guide (2.DEPLOYMENT.md)
 **Nama Sistem:** Sistem Antrian Teller/CS (Queue Counter System)  
 **Versi:** 1.0  
 **Tanggal:** 24 Oktober 2025  
