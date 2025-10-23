@@ -1,4 +1,4 @@
-# Software Design Document (SDD)
+# 1.Software Design Document (SDD)
 **Nama Sistem:** Sistem Antrian Teller/CS (Queue Counter System)  
 **Versi:** 1.0  
 **Tanggal:** 24 Oktober 2025  
