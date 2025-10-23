@@ -191,7 +191,7 @@ flowchart LR
 ---
 
 ## 13. Referensi
-- Dokumen SRS: [`srs_counter.md`](./README.md)  
+- Dokumen SRS: [`README.md`](./README.md)  
 - Panduan Web Speech API (MDN)  
 - Laravel WebSockets Documentation  
 
