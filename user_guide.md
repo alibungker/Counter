@@ -24,7 +24,7 @@ Sistem ini berbasis web dan dapat dijalankan di browser tanpa instalasi tambahan
 
 ## 3. Login dan Navigasi
 ### 3.1 Login
-1. Buka URL aplikasi (misal): `https://counter.example.com/login`
+1. Buka URL aplikasi (misal): `https://counter.bungker.co.id/login`
 2. Masukkan username dan password yang diberikan oleh admin.
 3. Klik **Masuk**.  
    Jika berhasil, Anda akan diarahkan ke dashboard sesuai peran.
@@ -45,7 +45,7 @@ Sistem ini berbasis web dan dapat dijalankan di browser tanpa instalasi tambahan
 ## 4. Modul Kiosk (Ambil Tiket)
 
 ### 4.1 Akses
-- URL: `https://counter.example.com/kiosk`
+- URL: `https://counter.bungker.co.id/kiosk`
 - Gunakan pada perangkat Kiosk, tablet, atau PC dengan printer thermal (opsional).
 
 ### 4.2 Langkah
@@ -72,7 +72,7 @@ Sistem ini berbasis web dan dapat dijalankan di browser tanpa instalasi tambahan
 ## 5. Modul Operator (Teller / CS)
 
 ### 5.1 Akses
-- URL: `https://counter.example.com/operator`
+- URL: `https://counter.bungker.co.id/operator`
 - Login menggunakan akun Teller/CS.
 
 ### 5.2 Tampilan
@@ -110,7 +110,7 @@ Sistem ini berbasis web dan dapat dijalankan di browser tanpa instalasi tambahan
 ## 6. Modul Display (Layar TV)
 
 ### 6.1 Akses
-- URL: `https://counter.example.com/display`
+- URL: `https://counter.bungker.co.id/display`
 - Bisa dibuka di TV dengan browser (mode fullscreen).
 
 ### 6.2 Fungsi
@@ -139,7 +139,7 @@ Sistem ini berbasis web dan dapat dijalankan di browser tanpa instalasi tambahan
 ## 7. Modul Admin (Pengaturan)
 
 ### 7.1 Akses
-- URL: `https://counter.example.com/admin`
+- URL: `https://counter.bungker.co.id/admin`
 - Role: **Admin Cabang**
 
 ### 7.2 Fitur
