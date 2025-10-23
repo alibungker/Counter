@@ -1,4 +1,4 @@
-# Financial Model — Queue Counter System
+# 4.Financial Model — Queue Counter System
 **Nama File:** finance_model.md  
 **Versi:** 1.0  
 **Tanggal:** 24 Oktober 2025  
