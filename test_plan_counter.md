@@ -1,4 +1,4 @@
-# Test Plan — Queue Counter System
+# 3.Test Plan — Queue Counter System
 **Nama File:** test_plan_counter.md  
 **Versi:** 1.0  
 **Tanggal:** 24 Oktober 2025  
