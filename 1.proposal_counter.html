@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>1.proposal_counter</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+</head>
+<body>
+<h1 id="proposal-sistem-antrian-digital">PROPOSAL SISTEM ANTRIAN
+DIGITAL</h1>
+<h2 id="bungker-counter---enterprise-queue-management-system"><strong>Bungker
+Counter - Enterprise Queue Management System</strong></h2>
+<p><strong>Dokumen Strategis untuk IT dan Bisnis</strong>
+<strong>Standar ISO/IEC JTC 1/SC 7 Software and Systems
+Engineering</strong> <strong>Versi 1.0 - Oktober 2024</strong></p>
+<hr />
+<h2 id="daftar-isi">📋 DAFTAR ISI</h2>
+<ol type="1">
+<li><a href="#1-ringkasan-eksekutif">RINGKASAN EKSEKUTIF</a></li>
+<li><a href="#2-analisis-situasi-saat-ini">ANALISIS SITUASI SAAT
+INI</a></li>
+<li><a href="#3-tujuan-dan-sasaran">TUJUAN DAN SASARAN</a></li>
+<li><a href="#4-desain-sistem">DESAIN SISTEM</a></li>
+<li><a href="#5-arsitektur-teknologi">ARSITEKTUR TEKNOLOGI</a></li>
+<li><a href="#6-rancangan-anggaran">RANCANGAN ANGGARAN</a></li>
+<li><a href="#7-implementasi-dan-pengembangan">IMPLEMENTASI DAN
+PENGEMBANGAN</a></li>
+<li><a href="#8-risiko-dan-mitigasi">RISIKO DAN MITIGASI</a></li>
+<li><a href="#9-standar-dan-kesesuaian">STANDAR DAN KESESUAIAN</a></li>
+<li><a href="#10-jadwal-pelaksanaan">JADWAL PELAKSANAAN</a></li>
+</ol>
+<hr />
+<h2 id="ringkasan-eksekutif">1. RINGKASAN EKSEKUTIF</h2>
+<h3 id="latar-belakang">1.1 Latar Belakang</h3>
+<p>Bungker Counter adalah <strong>Sistem Antrian Digital
+Terpadu</strong> yang dirancang untuk mengoptimalkan layanan pelanggan
+dengan standar <strong>ISO/IEC/IEEE 29148:2018</strong> (Systems and
+software engineering — Life cycle processes — Requirements engineering).
+Sistem ini mengintegrasikan teknologi modern untuk mengelola antrian
+pelanggan secara efisien dengan <strong>Real-time Queue
+Management</strong>.</p>
+<h3 id="visi-dan-misi">1.2 Visi dan Misi</h3>
+<p><strong>Visi:</strong> Menjadi sistem antrian terdepan yang
+memberikan pengalaman layanan pelanggan yang superior melalui inovasi
+teknologi digital.</p>
+<p><strong>Misi:</strong> Mengimplementasikan solusi antrian digital
+yang scalable, reliable, dan user-friendly dengan standar
+internasional.</p>
+<h3 id="value-proposition">1.3 Value Proposition</h3>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 37%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Komponen</th>
+<th>Nilai Bisnis</th>
+<th>Target KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Efficiency</strong></td>
+<td>Pengurangan waktu tunggu 60%</td>
+<td>&lt; 5 menit</td>
+</tr>
+<tr class="even">
+<td><strong>Customer Experience</strong></td>
+<td>Kepuasan pelanggan +40%</td>
+<td>&gt; 4.5/5</td>
+</tr>
+<tr class="odd">
+<td><strong>Resource Optimization</strong></td>
+<td>Optimalisasi tenaga kerja 30%</td>
+<td>95% utilization</td>
+</tr>
+<tr class="even">
+<td><strong>Data Analytics</strong></td>
+<td>Insight untuk bisnis decision</td>
+<td>Real-time dashboard</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="analisis-situasi-saat-ini">2. ANALISIS SITUASI SAAT INI</h2>
+<h3 id="current-system-analysis">2.1 Current System Analysis</h3>
+<p>Sistem yang telah dikembangkan mencakup:</p>
+<h4 id="komponen-yang-tersedia">✅ <strong>Komponen yang
+Tersedia:</strong></h4>
+<ul>
+<li><strong>Backend Infrastructure</strong>: Laravel 12 dengan PHP
+8.2+</li>
+<li><strong>Database</strong>: MariaDB dengan 10+ tabel terstruktur</li>
+<li><strong>Frontend</strong>: Responsive design dengan Tailwind
+CSS</li>
+<li><strong>Real-time System</strong>: WebSocket untuk live updates</li>
+<li><strong>Multi-branch Support</strong>: Sistem multi-cabang
+terintegrasi</li>
+<li><strong>User Management</strong>: Role-based access control</li>
+<li><strong>Queue Engine</strong>: Core queue management system</li>
+<li><strong>API Integration</strong>: 15+ RESTful API endpoints</li>
+</ul>
+<h4 id="area-yang-perlu-ditingkatkan">⚠️ <strong>Area yang Perlu
+Ditingkatkan:</strong></h4>
+<ul>
+<li>Monitoring dan alerting system</li>
+<li>Advanced analytics dan reporting</li>
+<li>Mobile application support</li>
+<li>Integration dengan sistem eksternal</li>
+<li>High availability setup</li>
+<li>Disaster recovery plan</li>
+</ul>
+<h3 id="pain-points-analysis">2.2 Pain Points Analysis</h3>
+<pre class="mermaid"><code>graph TD
+    A[Pain Points] --&gt; B[Customer Experience]
+    A --&gt; C[Operational Efficiency]
+    A --&gt; D[Management Visibility]
+
+    B --&gt; B1[Long waiting times]
+    B --&gt; B2[Unclear queue status]
+    B --&gt; B3[Manual ticket handling]
+
+    C --&gt; C1[Manual counter management]
+    C --&gt; C2[Inefficient resource allocation]
+    C --&gt; C3[Limited monitoring capabilities]
+
+    D --&gt; D1[No real-time analytics]
+    D --&gt; D2[Limited reporting options]
+    D --&gt; D3[No performance metrics]</code></pre>
+<hr />
+<h2 id="tujuan-dan-sasaran">3. TUJUAN DAN SASARAN</h2>
+<h3 id="business-objectives">3.1 Business Objectives</h3>
+<ol type="1">
+<li><strong>Efficiency Improvement</strong>
+<ul>
+<li>Target: 60% reduction in customer waiting time</li>
+<li>Metrics: Average waiting time &lt; 5 minutes</li>
+<li>Timeline: 3 months post-implementation</li>
+</ul></li>
+<li><strong>Customer Satisfaction</strong>
+<ul>
+<li>Target: 40% increase in CSAT score</li>
+<li>Metrics: Customer satisfaction &gt; 4.5/5</li>
+<li>Timeline: 6 months post-implementation</li>
+</ul></li>
+<li><strong>Operational Excellence</strong>
+<ul>
+<li>Target: 30% improvement in staff productivity</li>
+<li>Metrics: Counter utilization &gt; 95%</li>
+<li>Timeline: 3 months post-implementation</li>
+</ul></li>
+<li><strong>Data-Driven Decisions</strong>
+<ul>
+<li>Target: Real-time analytics dashboard</li>
+<li>Metrics: 100% availability of KPI data</li>
+<li>Timeline: Immediate post-implementation</li>
+</ul></li>
+</ol>
+<h3 id="technical-objectives">3.2 Technical Objectives</h3>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 25%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Objective</th>
+<th>Target</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>System Availability</strong></td>
+<td>99.9% uptime</td>
+<td>Downtime &lt; 8.76 hours/year</td>
+</tr>
+<tr class="even">
+<td><strong>Response Time</strong></td>
+<td>&lt; 2 seconds</td>
+<td>API response time</td>
+</tr>
+<tr class="odd">
+<td><strong>Scalability</strong></td>
+<td>1000+ concurrent users</td>
+<td>Load testing results</td>
+</tr>
+<tr class="even">
+<td><strong>Security</strong></td>
+<td>Zero critical vulnerabilities</td>
+<td>Security audit</td>
+</tr>
+<tr class="odd">
+<td><strong>Performance</strong></td>
+<td>&lt; 1 second queue processing</td>
+<td>Queue engine performance</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="desain-sistem">4. DESAIN SISTEM</h2>
+<h3 id="system-architecture-overview">4.1 System Architecture
+Overview</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph &quot;Presentation Layer&quot;
+        A[Kiosk Web]
+        B[Operator Interface]
+        C[Display TV]
+        D[Admin Panel]
+        E[Mobile App]
+    end
+
+    subgraph &quot;Application Layer&quot;
+        F[Nginx Load Balancer]
+        G[Laravel Application]
+        H[WebSocket Server]
+        I[API Gateway]
+    end
+
+    subgraph &quot;Business Logic Layer&quot;
+        J[Queue Management]
+        K[User Management]
+        L[Analytics Engine]
+        M[Notification Service]
+    end
+
+    subgraph &quot;Data Layer&quot;
+        N[MariaDB Primary]
+        O[MariaDB Replica]
+        P[Redis Cache]
+        Q[File Storage]
+    end
+
+    A --&gt; F
+    B --&gt; F
+    C --&gt; F
+    D --&gt; F
+    E --&gt; F
+
+    F --&gt; G
+    F --&gt; H
+    F --&gt; I
+
+    G --&gt; J
+    G --&gt; K
+    G --&gt; L
+    G --&gt; M
+
+    J --&gt; N
+    K --&gt; N
+    L --&gt; O
+    M --&gt; P
+    L --&gt; Q</code></pre>
+<h3 id="queue-management-flow">4.2 Queue Management Flow</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant C as Customer
+    participant K as Kiosk
+    participant Q as Queue Engine
+    participant O as Operator
+    participant D as Display
+    participant A as Admin
+
+    C-&gt;&gt;K: Select Service
+    K-&gt;&gt;Q: Generate Ticket
+    Q-&gt;&gt;K: Return Ticket Number
+    Q-&gt;&gt;D: Update Display
+    Q-&gt;&gt;A: Log Event
+
+    loop Queue Processing
+        O-&gt;&gt;Q: Call Next Customer
+        Q-&gt;&gt;D: Update Display
+        Q-&gt;&gt;A: Update Analytics
+        C-&gt;&gt;O: Receive Service
+        O-&gt;&gt;Q: Mark Complete
+        Q-&gt;&gt;A: Update Reports
+    end</code></pre>
+<h3 id="database-schema-design">4.3 Database Schema Design</h3>
+<pre class="mermaid"><code>erDiagram
+    USERS {
+        bigint id PK
+        string name
+        string email
+        string role
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    BRANCHES {
+        bigint id PK
+        string name
+        string address
+        string phone
+        boolean is_active
+        timestamp created_at
+    }
+
+    SERVICES {
+        bigint id PK
+        bigint branch_id FK
+        string name
+        string code
+        boolean is_priority
+        timestamp created_at
+    }
+
+    COUNTERS {
+        bigint id PK
+        bigint branch_id FK
+        bigint service_id FK
+        string name
+        string operator_id FK
+        boolean is_active
+        timestamp created_at
+    }
+
+    TICKETS {
+        bigint id PK
+        bigint branch_id FK
+        bigint service_id FK
+        string ticket_number
+        string status
+        timestamp called_at
+        timestamp completed_at
+        timestamp created_at
+    }
+
+    CALLS {
+        bigint id PK
+        bigint ticket_id FK
+        bigint counter_id FK
+        bigint operator_id FK
+        string action
+        timestamp created_at
+    }
+
+    AUDIT_LOGS {
+        bigint id PK
+        bigint user_id FK
+        string action
+        string details
+        timestamp created_at
+    }
+
+    BRANCHES ||--o{ SERVICES : has
+    BRANCHES ||--o{ COUNTERS : has
+    SERVICES ||--o{ COUNTERS : belongs_to
+    SERVICES ||--o{ TICKETS : generates
+    USERS ||--o{ COUNTERS : operates
+    USERS ||--o{ CALLS : makes
+    TICKETS ||--o{ CALLS : tracked_by
+    USERS ||--o{ AUDIT_LOGS : performs</code></pre>
+<h3 id="api-design">4.4 API Design</h3>
+<h4 id="core-api-endpoints">Core API Endpoints:</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Queue Management API</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">/api/v1/tickets</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">post</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> Create new ticket</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">Queue Management</span><span class="kw">]</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">requestBody</span><span class="kw">:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">content</span><span class="kw">:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">application/json</span><span class="kw">:</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">schema</span><span class="kw">:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">type</span><span class="kw">:</span><span class="at"> object</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">properties</span><span class="kw">:</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">branch_id</span><span class="kw">:</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> integer</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">service_id</span><span class="kw">:</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> integer</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">              </span><span class="fu">customer_name</span><span class="kw">:</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> string</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">optional</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">responses</span><span class="kw">:</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">201</span><span class="kw">:</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Ticket created successfully</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">400</span><span class="kw">:</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Invalid request</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">/api/v1/tickets/current</span><span class="kw">:</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">get</span><span class="kw">:</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> Get current queue status</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">Queue Management</span><span class="kw">]</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> branch_id</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">in</span><span class="kw">:</span><span class="at"> query</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">schema</span><span class="kw">:</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">type</span><span class="kw">:</span><span class="at"> integer</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> service_id</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">in</span><span class="kw">:</span><span class="at"> query</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">schema</span><span class="kw">:</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">type</span><span class="kw">:</span><span class="at"> integer</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">responses</span><span class="kw">:</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">200</span><span class="kw">:</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Current queue status</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Counter Operations API</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">/api/v1/counters/{counter_id}/call-next</span><span class="kw">:</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">post</span><span class="kw">:</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> Call next ticket</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">Counter Operations</span><span class="kw">]</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">parameters</span><span class="kw">:</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> counter_id</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">in</span><span class="kw">:</span><span class="at"> path</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">schema</span><span class="kw">:</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">type</span><span class="kw">:</span><span class="at"> integer</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">responses</span><span class="kw">:</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">200</span><span class="kw">:</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Next ticket called successfully</span></span></code></pre></div>
+<hr />
+<h2 id="arsitektur-teknologi">5. ARSITEKTUR TEKNOLOGI</h2>
+<h3 id="technology-stack">5.1 Technology Stack</h3>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Technology</th>
+<th>Version</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Backend</strong></td>
+<td>Laravel</td>
+<td>12.x</td>
+<td>Enterprise PHP framework</td>
+</tr>
+<tr class="even">
+<td><strong>Language</strong></td>
+<td>PHP</td>
+<td>8.2+</td>
+<td>Latest stable version</td>
+</tr>
+<tr class="odd">
+<td><strong>Database</strong></td>
+<td>MariaDB</td>
+<td>10.11+</td>
+<td>MySQL compatible with performance</td>
+</tr>
+<tr class="even">
+<td><strong>Frontend</strong></td>
+<td>Vue.js + Tailwind</td>
+<td>3.x</td>
+<td>Modern, responsive UI</td>
+</tr>
+<tr class="odd">
+<td><strong>Real-time</strong></td>
+<td>WebSocket</td>
+<td>-</td>
+<td>Live updates</td>
+</tr>
+<tr class="even">
+<td><strong>Cache</strong></td>
+<td>Redis</td>
+<td>7.x</td>
+<td>High-performance caching</td>
+</tr>
+<tr class="odd">
+<td><strong>Web Server</strong></td>
+<td>Nginx</td>
+<td>1.24+</td>
+<td>High performance, scalable</td>
+</tr>
+<tr class="even">
+<td><strong>Container</strong></td>
+<td>Docker</td>
+<td>24.x</td>
+<td>Containerization</td>
+</tr>
+<tr class="odd">
+<td><strong>Orchestration</strong></td>
+<td>Docker Compose</td>
+<td>2.x</td>
+<td>Multi-container management</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure-architecture">5.2 Infrastructure
+Architecture</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph &quot;Production Environment&quot;
+        subgraph &quot;Load Balancer&quot;
+            LB[Nginx Load Balancer]
+        end
+
+        subgraph &quot;Application Servers&quot;
+            APP1[App Server 1]
+            APP2[App Server 2]
+            APP3[App Server 3]
+        end
+
+        subgraph &quot;Database Cluster&quot;
+            DB1[(MariaDB Primary)]
+            DB2[(MariaDB Replica)]
+            DB3[(MariaDB Replica)]
+        end
+
+        subgraph &quot;Cache Layer&quot;
+            REDIS1[(Redis Master)]
+            REDIS2[(Redis Slave)]
+        end
+
+        subgraph &quot;File Storage&quot;
+            STORAGE[Object Storage]
+        end
+
+        subgraph &quot;Monitoring&quot;
+            MON[Prometheus + Grafana]
+            LOG[ELK Stack]
+        end
+    end
+
+    LB --&gt; APP1
+    LB --&gt; APP2
+    LB --&gt; APP3
+
+    APP1 --&gt; DB1
+    APP2 --&gt; DB1
+    APP3 --&gt; DB1
+
+    DB1 --&gt; DB2
+    DB1 --&gt; DB3
+
+    APP1 --&gt; REDIS1
+    APP2 --&gt; REDIS1
+    APP3 --&gt; REDIS1
+
+    REDIS1 --&gt; REDIS2
+
+    APP1 --&gt; STORAGE
+    APP2 --&gt; STORAGE
+    APP3 --&gt; STORAGE
+
+    APP1 --&gt; MON
+    APP2 --&gt; MON
+    APP3 --&gt; MON
+
+    APP1 --&gt; LOG
+    APP2 --&gt; LOG
+    APP3 --&gt; LOG</code></pre>
+<h3 id="security-architecture">5.3 Security Architecture</h3>
+<pre class="mermaid"><code>graph TB
+    subgraph &quot;Security Layers&quot;
+        subgraph &quot;Network Security&quot;
+            FW[Firewall]
+            WAF[Web Application Firewall]
+            DDoS[DDoS Protection]
+        end
+
+        subgraph &quot;Application Security&quot;
+            AUTH[Authentication]
+            AUTHZ[Authorization]
+            VALID[Input Validation]
+            CSRF[CSRF Protection]
+        end
+
+        subgraph &quot;Data Security&quot;
+            ENC[Encryption at Rest]
+            SSL[SSL/TLS]
+            HASH[Password Hashing]
+            AUDIT[Audit Logging]
+        end
+
+        subgraph &quot;Infrastructure Security&quot;
+            RBAC[Role-Based Access]
+            VPN[VPN Access]
+            MFA[Multi-Factor Auth]
+            BACKUP[Regular Backups]
+        end
+    end
+
+    DDoS --&gt; WAF
+    WAF --&gt; FW
+    FW --&gt; AUTH
+    AUTH --&gt; AUTHZ
+    AUTHZ --&gt; VALID
+    VALID --&gt; CSRF
+    CSRF --&gt; ENC
+    ENC --&gt; SSL
+    SSL --&gt; HASH
+    HASH --&gt; AUDIT
+    AUDIT --&gt; RBAC
+    RBAC --&gt; VPN
+    VPN --&gt; MFA
+    MFA --&gt; BACKUP</code></pre>
+<hr />
+<h2 id="rancangan-anggaran">6. RANCANGAN ANGGARAN</h2>
+<h3 id="investment-summary">6.1 Investment Summary</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 30%" />
+<col style="width: 18%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kategori</th>
+<th>Biaya (IDR)</th>
+<th>Durasi</th>
+<th>Keterangan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Infrastructure Setup</strong></td>
+<td>150.000.000</td>
+<td>One-time</td>
+<td>Server, Database, Networking</td>
+</tr>
+<tr class="even">
+<td><strong>Software Development</strong></td>
+<td>300.000.000</td>
+<td>One-time</td>
+<td>Development &amp; Testing</td>
+</tr>
+<tr class="odd">
+<td><strong>Implementation</strong></td>
+<td>100.000.000</td>
+<td>One-time</td>
+<td>Deployment &amp; Training</td>
+</tr>
+<tr class="even">
+<td><strong>Licensing</strong></td>
+<td>75.000.000</td>
+<td>Annual</td>
+<td>Software licenses</td>
+</tr>
+<tr class="odd">
+<td><strong>Maintenance</strong></td>
+<td>120.000.000</td>
+<td>Annual</td>
+<td>Support &amp; Updates</td>
+</tr>
+<tr class="even">
+<td><strong>Training</strong></td>
+<td>50.000.000</td>
+<td>One-time</td>
+<td>User training</td>
+</tr>
+<tr class="odd">
+<td><strong>Total Year 1</strong></td>
+<td><strong>795.000.000</strong></td>
+<td>-</td>
+<td><strong>Total investasi tahun pertama</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Total Year 2+</strong></td>
+<td><strong>195.000.000</strong></td>
+<td>Annual</td>
+<td><strong>Operasional tahunan</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="detailed-cost-breakdown">6.2 Detailed Cost Breakdown</h3>
+<h4 id="infrastructure-costs">6.2.1 Infrastructure Costs</h4>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 28%" />
+<col style="width: 17%" />
+<col style="width: 26%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Spesifikasi</th>
+<th>Jumlah</th>
+<th>Harga/Unit</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Production Server</strong></td>
+<td>Dell PowerEdge R650</td>
+<td>2</td>
+<td>45.000.000</td>
+<td>90.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Database Server</strong></td>
+<td>Dell PowerEdge R750</td>
+<td>1</td>
+<td>35.000.000</td>
+<td>35.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Storage Array</strong></td>
+<td>Dell PowerStore</td>
+<td>1</td>
+<td>20.000.000</td>
+<td>20.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Network Equipment</strong></td>
+<td>Switch + Firewall</td>
+<td>1 set</td>
+<td>5.000.000</td>
+<td>5.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Subtotal Infrastructure</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>150.000.000</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="software-development-costs">6.2.2 Software Development
+Costs</h4>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Duration</th>
+<th>Team Size</th>
+<th>Daily Rate</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Requirements &amp; Design</strong></td>
+<td>2 weeks</td>
+<td>4 persons</td>
+<td>1.500.000</td>
+<td>60.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Backend Development</strong></td>
+<td>8 weeks</td>
+<td>3 persons</td>
+<td>1.500.000</td>
+<td>180.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Frontend Development</strong></td>
+<td>6 weeks</td>
+<td>2 persons</td>
+<td>1.500.000</td>
+<td>90.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Testing &amp; QA</strong></td>
+<td>4 weeks</td>
+<td>2 persons</td>
+<td>1.000.000</td>
+<td>40.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Documentation</strong></td>
+<td>2 weeks</td>
+<td>1 person</td>
+<td>1.000.000</td>
+<td>10.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Subtotal Development</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>380.000.000</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: Development costs already included in current system
+investment</em></p>
+<h4 id="operational-costs-annual">6.2.3 Operational Costs (Annual)</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Frequency</th>
+<th>Cost</th>
+<th>Total/Annual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cloud Hosting</strong></td>
+<td>Monthly</td>
+<td>5.000.000</td>
+<td>60.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Database License</strong></td>
+<td>Annual</td>
+<td>30.000.000</td>
+<td>30.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Monitoring Tools</strong></td>
+<td>Annual</td>
+<td>15.000.000</td>
+<td>15.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Support Team</strong></td>
+<td>Monthly</td>
+<td>1.250.000</td>
+<td>15.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Subtotal Annual</strong></td>
+<td></td>
+<td></td>
+<td><strong>120.000.000</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="roi-analysis">6.3 ROI Analysis</h3>
+<h4 id="cost-savings-calculation">6.3.1 Cost Savings Calculation</h4>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 21%" />
+<col style="width: 20%" />
+<col style="width: 13%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Cost Component</th>
+<th>Current Cost</th>
+<th>With System</th>
+<th>Savings</th>
+<th>% Reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Manpower</strong></td>
+<td>600.000.000</td>
+<td>420.000.000</td>
+<td>180.000.000</td>
+<td>30%</td>
+</tr>
+<tr class="even">
+<td><strong>Queue Management</strong></td>
+<td>150.000.000</td>
+<td>60.000.000</td>
+<td>90.000.000</td>
+<td>60%</td>
+</tr>
+<tr class="odd">
+<td><strong>Customer Service</strong></td>
+<td>300.000.000</td>
+<td>180.000.000</td>
+<td>120.000.000</td>
+<td>40%</td>
+</tr>
+<tr class="even">
+<td><strong>Total Annual Savings</strong></td>
+<td><strong>1.050.000.000</strong></td>
+<td><strong>660.000.000</strong></td>
+<td><strong>390.000.000</strong></td>
+<td><strong>37%</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="roi-timeline">6.3.2 ROI Timeline</h4>
+<pre class="mermaid"><code>gantt
+    title ROI Projection Timeline
+    dateFormat  YYYY-MM
+    axisFormat  %Y
+
+    section Investment
+    Initial Investment :2024-10, 8m
+    Infrastructure Setup :2024-10, 2m
+    System Development :2024-12, 4m
+
+    section Returns
+    Operational Savings :2025-02, 12m
+    Efficiency Gains :2025-02, 12m
+    Customer Satisfaction :2025-02, 12m
+
+    section Break-even
+    Monthly Savings :2025-02, 8m
+    Break-even Point :2025-10, 1m</code></pre>
+<h3 id="financial-metrics">6.4 Financial Metrics</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 44%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Calculation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Initial Investment</strong></td>
+<td>Infrastructure + Development</td>
+<td>795.000.000</td>
+</tr>
+<tr class="even">
+<td><strong>Annual Net Savings</strong></td>
+<td>Total Savings - Annual Costs</td>
+<td>270.000.000</td>
+</tr>
+<tr class="odd">
+<td><strong>Payback Period</strong></td>
+<td>Investment / Annual Savings</td>
+<td>2.9 years</td>
+</tr>
+<tr class="even">
+<td><strong>3-Year ROI</strong></td>
+<td>(3 × Annual Savings - Investment) / Investment</td>
+<td>102%</td>
+</tr>
+<tr class="odd">
+<td><strong>5-Year ROI</strong></td>
+<td>(5 × Annual Savings - Investment - 4×Annual Costs) / Investment</td>
+<td>185%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="implementasi-dan-pengembangan">7. IMPLEMENTASI DAN
+PENGEMBANGAN</h2>
+<h3 id="project-methodology">7.1 Project Methodology</h3>
+<p>Menggunakan <strong>Hybrid Agile-Waterfall</strong> dengan standar
+<strong>ISO/IEC/IEEE 16326:2019</strong> (Systems and software
+engineering — Life cycle processes — Project management).</p>
+<h4 id="phase-1-foundation-month-1-2">Phase 1: Foundation (Month
+1-2)</h4>
+<pre class="mermaid"><code>graph LR
+    A[Requirements Gathering] --&gt; B[System Design]
+    B --&gt; C[Infrastructure Setup]
+    C --&gt; D[Environment Configuration]</code></pre>
+<h4 id="phase-2-development-month-3-6">Phase 2: Development (Month
+3-6)</h4>
+<pre class="mermaid"><code>graph TD
+    A[Backend Development] --&gt; E[Frontend Development]
+    B[API Development] --&gt; E
+    C[Database Optimization] --&gt; E
+    D[Testing Framework] --&gt; F[Integration Testing]
+    E --&gt; F
+    F --&gt; G[UAT]</code></pre>
+<h4 id="phase-3-deployment-month-7-8">Phase 3: Deployment (Month
+7-8)</h4>
+<pre class="mermaid"><code>graph LR
+    A[Production Deployment] --&gt; B[User Training]
+    B --&gt; C[Go-Live]
+    C --&gt; D[Hypercare Support]</code></pre>
+<h3 id="development-team-structure">7.2 Development Team Structure</h3>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 20%" />
+<col style="width: 32%" />
+<col style="width: 34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role</th>
+<th>Quantity</th>
+<th>Responsibility</th>
+<th>Skills Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Project Manager</strong></td>
+<td>1</td>
+<td>Project coordination, timeline</td>
+<td>PMP, Agile, ISO standards</td>
+</tr>
+<tr class="even">
+<td><strong>System Architect</strong></td>
+<td>1</td>
+<td>Technical architecture, design</td>
+<td>Laravel, Cloud, Security</td>
+</tr>
+<tr class="odd">
+<td><strong>Backend Developer</strong></td>
+<td>2</td>
+<td>API, Business logic</td>
+<td>PHP, Laravel, Database</td>
+</tr>
+<tr class="even">
+<td><strong>Frontend Developer</strong></td>
+<td>2</td>
+<td>UI/UX, Interface</td>
+<td>Vue.js, Tailwind, Design</td>
+</tr>
+<tr class="odd">
+<td><strong>DevOps Engineer</strong></td>
+<td>1</td>
+<td>Deployment, Infrastructure</td>
+<td>Docker, CI/CD, Monitoring</td>
+</tr>
+<tr class="even">
+<td><strong>QA Engineer</strong></td>
+<td>1</td>
+<td>Testing, Quality assurance</td>
+<td>Testing, Automation</td>
+</tr>
+<tr class="odd">
+<td><strong>Business Analyst</strong></td>
+<td>1</td>
+<td>Requirements, stakeholder</td>
+<td>Business process, Analysis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quality-assurance-plan">7.3 Quality Assurance Plan</h3>
+<h4 id="testing-strategy">7.3.1 Testing Strategy</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Testing Type</th>
+<th>Scope</th>
+<th>Tools</th>
+<th>Coverage Target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Unit Testing</strong></td>
+<td>Code level</td>
+<td>PHPUnit</td>
+<td>80%</td>
+</tr>
+<tr class="even">
+<td><strong>Integration Testing</strong></td>
+<td>API integration</td>
+<td>Postman</td>
+<td>100%</td>
+</tr>
+<tr class="odd">
+<td><strong>System Testing</strong></td>
+<td>End-to-end flow</td>
+<td>Selenium</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td><strong>Performance Testing</strong></td>
+<td>Load &amp; stress</td>
+<td>JMeter</td>
+<td>1000+ users</td>
+</tr>
+<tr class="odd">
+<td><strong>Security Testing</strong></td>
+<td>Vulnerabilities</td>
+<td>OWASP ZAP</td>
+<td>Zero critical</td>
+</tr>
+<tr class="even">
+<td><strong>UAT</strong></td>
+<td>User acceptance</td>
+<td>Manual</td>
+<td>100% scenarios</td>
+</tr>
+</tbody>
+</table>
+<h4 id="quality-metrics">7.3.2 Quality Metrics</h4>
+<ul>
+<li><strong>Code Quality</strong>: Maintainability Index &gt; 70</li>
+<li><strong>Performance</strong>: Response time &lt; 2 seconds</li>
+<li><strong>Security</strong>: OWASP Top 10 compliance</li>
+<li><strong>Usability</strong>: SUS score &gt; 80</li>
+<li><strong>Reliability</strong>: Uptime &gt; 99.9%</li>
+</ul>
+<hr />
+<h2 id="risiko-dan-mitigasi">8. RISIKO DAN MITIGASI</h2>
+<h3 id="risk-assessment-matrix">8.1 Risk Assessment Matrix</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 14%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Risk Category</th>
+<th>Risk Description</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Risk Level</th>
+<th>Mitigation Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Technical</strong></td>
+<td>System downtime</td>
+<td>Medium</td>
+<td>High</td>
+<td>High</td>
+<td>Redundant servers, monitoring</td>
+</tr>
+<tr class="even">
+<td><strong>Technical</strong></td>
+<td>Performance bottleneck</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Load testing, optimization</td>
+</tr>
+<tr class="odd">
+<td><strong>Security</strong></td>
+<td>Data breach</td>
+<td>Low</td>
+<td>Critical</td>
+<td>High</td>
+<td>Security audit, encryption</td>
+</tr>
+<tr class="even">
+<td><strong>Operational</strong></td>
+<td>User adoption issues</td>
+<td>Medium</td>
+<td>High</td>
+<td>High</td>
+<td>Training, change management</td>
+</tr>
+<tr class="odd">
+<td><strong>Financial</strong></td>
+<td>Budget overrun</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Agile development, MVP approach</td>
+</tr>
+<tr class="even">
+<td><strong>Compliance</strong></td>
+<td>Regulatory non-compliance</td>
+<td>Low</td>
+<td>High</td>
+<td>Medium</td>
+<td>Legal review, compliance audit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="risk-mitigation-plan">8.2 Risk Mitigation Plan</h3>
+<h4 id="high-priority-risks">8.2.1 High Priority Risks</h4>
+<p><strong>1. System Downtime (Risk Level: High)</strong> -
+<strong>Prevention</strong>: - Redundant architecture with auto-failover
+- 24/7 monitoring with alerting - Regular maintenance windows -
+<strong>Response</strong>: - Disaster recovery plan - Backup systems
+ready - SLA with 4-hour response time</p>
+<p><strong>2. Data Breach (Risk Level: High)</strong> -
+<strong>Prevention</strong>: - End-to-end encryption - Regular security
+audits - Employee security training - <strong>Response</strong>: -
+Incident response team - Customer notification protocol - Forensic
+investigation capability</p>
+<h4 id="contingency-planning">8.2.2 Contingency Planning</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Impact</th>
+<th>Response Plan</th>
+<th>Recovery Time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Database corruption</strong></td>
+<td>Critical</td>
+<td>Restore from backup</td>
+<td>2 hours</td>
+</tr>
+<tr class="even">
+<td><strong>Network outage</strong></td>
+<td>High</td>
+<td>Switch to backup connection</td>
+<td>30 minutes</td>
+</tr>
+<tr class="odd">
+<td><strong>Application bug</strong></td>
+<td>Medium</td>
+<td>Hotfix deployment</td>
+<td>4 hours</td>
+</tr>
+<tr class="even">
+<td><strong>Hardware failure</strong></td>
+<td>Medium</td>
+<td>Replace with spare unit</td>
+<td>1 hour</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="standar-dan-kesesuaian">9. STANDAR DAN KESESUAIAN</h2>
+<h3 id="isoiec-standards-compliance">9.1 ISO/IEC Standards
+Compliance</h3>
+<h4 id="relevant-standards">9.1.1 Relevant Standards</h4>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 23%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Standard</th>
+<th>Title</th>
+<th>Relevance</th>
+<th>Compliance Level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ISO/IEC 27001</strong></td>
+<td>Information Security Management</td>
+<td>Data security &amp; privacy</td>
+<td>Full compliance</td>
+</tr>
+<tr class="even">
+<td><strong>ISO/IEC 25010</strong></td>
+<td>System and software Quality Requirements</td>
+<td>Software quality</td>
+<td>Full compliance</td>
+</tr>
+<tr class="odd">
+<td><strong>ISO/IEC/IEEE 29148</strong></td>
+<td>Requirements Engineering</td>
+<td>Requirements management</td>
+<td>Full compliance</td>
+</tr>
+<tr class="even">
+<td><strong>ISO/IEC/IEEE 16326</strong></td>
+<td>Project Management</td>
+<td>Project processes</td>
+<td>Full compliance</td>
+</tr>
+<tr class="odd">
+<td><strong>ISO/IEC 9126</strong></td>
+<td>Software Quality Model</td>
+<td>Quality characteristics</td>
+<td>Partial compliance</td>
+</tr>
+</tbody>
+</table>
+<h4 id="implementation-roadmap">9.1.2 Implementation Roadmap</h4>
+<pre class="mermaid"><code>graph TD
+    A[Gap Analysis] --&gt; B[Compliance Planning]
+    B --&gt; C[Implementation Phase 1]
+    C --&gt; D[Implementation Phase 2]
+    D --&gt; E[Audit &amp; Certification]
+
+    subgraph &quot;Phase 1: Foundation&quot;
+        C1[ISO 27001 Controls]
+        C2[Quality Management System]
+        C3[Documentation Standards]
+    end
+
+    subgraph &quot;Phase 2: Enhancement&quot;
+        D1[Advanced Security Controls]
+        D2[Performance Metrics]
+        D3[Continuous Improvement]
+    end
+
+    C --&gt; C1
+    C --&gt; C2
+    C --&gt; C3
+
+    D --&gt; D1
+    D --&gt; D2
+    D --&gt; D3</code></pre>
+<h3 id="legal-and-regulatory-compliance">9.2 Legal and Regulatory
+Compliance</h3>
+<h4 id="data-protection">9.2.1 Data Protection</h4>
+<ul>
+<li><strong>Personal Data Protection</strong>: PDPA compliance</li>
+<li><strong>Data Localization</strong>: Local data storage
+requirements</li>
+<li><strong>Retention Policy</strong>: 7-year data retention</li>
+<li><strong>Consent Management</strong>: Explicit user consent</li>
+</ul>
+<h4 id="industry-standards">9.2.2 Industry Standards</h4>
+<ul>
+<li><strong>Financial Sector</strong>: Bank Indonesia regulations (if
+applicable)</li>
+<li><strong>Healthcare</strong>: HIPAA compliance (if applicable)</li>
+<li><strong>Government</strong>: e-Government standards (if
+applicable)</li>
+</ul>
+<hr />
+<h2 id="jadwal-pelaksanaan">10. JADWAL PELAKSANAAN</h2>
+<h3 id="project-timeline">10.1 Project Timeline</h3>
+<pre class="mermaid"><code>gantt
+    title Project Implementation Timeline
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %Y
+
+    section Phase 1: Planning
+    Requirements Analysis :2024-11-01, 2024-11-15
+    System Design :2024-11-16, 2024-11-30
+    Infrastructure Setup :2024-12-01, 2024-12-15
+
+    section Phase 2: Development
+    Backend Development :2024-12-16, 2025-01-31
+    Frontend Development :2025-01-01, 2025-02-15
+    API Integration :2025-02-01, 2025-02-28
+
+    section Phase 3: Testing
+    Unit Testing :2025-02-01, 2025-02-28
+    Integration Testing :2025-03-01, 2025-03-15
+    UAT :2025-03-16, 2025-03-31
+
+    section Phase 4: Deployment
+    Production Deployment :2025-04-01, 2025-04-15
+    User Training :2025-04-16, 2025-04-30
+    Go-Live :2025-05-01, 2025-05-07
+    Hypercare Support :2025-05-08, 2025-05-31</code></pre>
+<h3 id="milestones-and-deliverables">10.2 Milestones and
+Deliverables</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 21%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Milestone</th>
+<th>Target Date</th>
+<th>Key Deliverables</th>
+<th>Success Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Project Kickoff</strong></td>
+<td>1 Nov 2024</td>
+<td>Project charter, Team assignment</td>
+<td>All resources allocated</td>
+</tr>
+<tr class="even">
+<td><strong>Requirements Complete</strong></td>
+<td>15 Nov 2024</td>
+<td>BRD, System requirements</td>
+<td>Stakeholder approval</td>
+</tr>
+<tr class="odd">
+<td><strong>Design Complete</strong></td>
+<td>30 Nov 2024</td>
+<td>Technical design, Architecture</td>
+<td>Technical review passed</td>
+</tr>
+<tr class="even">
+<td><strong>Infrastructure Ready</strong></td>
+<td>15 Dec 2024</td>
+<td>Server setup, Network config</td>
+<td>All systems operational</td>
+</tr>
+<tr class="odd">
+<td><strong>Development Complete</strong></td>
+<td>28 Feb 2025</td>
+<td>Full system implementation</td>
+<td>All features developed</td>
+</tr>
+<tr class="even">
+<td><strong>Testing Complete</strong></td>
+<td>31 Mar 2025</td>
+<td>Test reports, Bug fixes</td>
+<td>All tests passed</td>
+</tr>
+<tr class="odd">
+<td><strong>Deployment Complete</strong></td>
+<td>15 Apr 2025</td>
+<td>Production system live</td>
+<td>System fully operational</td>
+</tr>
+<tr class="even">
+<td><strong>Training Complete</strong></td>
+<td>30 Apr 2025</td>
+<td>User manuals, Training completed</td>
+<td>All users trained</td>
+</tr>
+<tr class="odd">
+<td><strong>Go-Live</strong></td>
+<td>1 May 2025</td>
+<td>System fully operational</td>
+<td>No critical issues</td>
+</tr>
+</tbody>
+</table>
+<h3 id="resource-allocation">10.3 Resource Allocation</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Duration</th>
+<th>Team Members</th>
+<th>Hours per Person</th>
+<th>Total Hours</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Planning</strong></td>
+<td>6 weeks</td>
+<td>7 persons</td>
+<td>160</td>
+<td>1,120</td>
+</tr>
+<tr class="even">
+<td><strong>Development</strong></td>
+<td>12 weeks</td>
+<td>7 persons</td>
+<td>480</td>
+<td>3,360</td>
+</tr>
+<tr class="odd">
+<td><strong>Testing</strong></td>
+<td>4 weeks</td>
+<td>7 persons</td>
+<td>160</td>
+<td>1,120</td>
+</tr>
+<tr class="even">
+<td><strong>Deployment</strong></td>
+<td>4 weeks</td>
+<td>7 persons</td>
+<td>160</td>
+<td>1,120</td>
+</tr>
+<tr class="odd">
+<td><strong>Training</strong></td>
+<td>2 weeks</td>
+<td>3 persons</td>
+<td>80</td>
+<td>240</td>
+</tr>
+<tr class="even">
+<td><strong>Total Project</strong></td>
+<td>28 weeks</td>
+<td>-</td>
+<td>-</td>
+<td><strong>6,960 hours</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary-dan-rekomendasi">📊 SUMMARY DAN REKOMENDASI</h2>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<ol type="1">
+<li><strong>Total Investment</strong>: Rp 795.000.000 (Year 1)</li>
+<li><strong>Annual Savings</strong>: Rp 390.000.000</li>
+<li><strong>Payback Period</strong>: 2.9 years</li>
+<li><strong>3-Year ROI</strong>: 102%</li>
+<li><strong>Project Duration</strong>: 7 months</li>
+</ol>
+<h3 id="critical-success-factors">Critical Success Factors</h3>
+<ul>
+<li>✅ <strong>Strong executive sponsorship</strong></li>
+<li>✅ <strong>Comprehensive change management</strong></li>
+<li>✅ <strong>Robust technical architecture</strong></li>
+<li>✅ <strong>Adequate user training</strong></li>
+<li>✅ <strong>Continuous monitoring and optimization</strong></li>
+</ul>
+<h3 id="next-steps">Next Steps</h3>
+<ol type="1">
+<li><strong>Immediate Actions</strong> (Next 2 weeks)
+<ul>
+<li>Executive approval and budget allocation</li>
+<li>Core team formation</li>
+<li>Detailed requirement gathering</li>
+</ul></li>
+<li><strong>Short-term Actions</strong> (Next month)
+<ul>
+<li>Infrastructure procurement</li>
+<li>Development environment setup</li>
+<li>Initial development sprint</li>
+</ul></li>
+<li><strong>Long-term Actions</strong> (Next 6 months)
+<ul>
+<li>Full system implementation</li>
+<li>User training and adoption</li>
+<li>Performance optimization</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="contact-information">📞 CONTACT INFORMATION</h2>
+<p><strong>Project Team:</strong> - <strong>Project Manager</strong>:
+[Name] - [Email] - [Phone] - <strong>Technical Lead</strong>: [Name] -
+[Email] - [Phone] - <strong>Business Analyst</strong>: [Name] - [Email]
+- [Phone]</p>
+<p><strong>Document Version:</strong> - <strong>Version</strong>: 1.0 -
+<strong>Date</strong>: 29 Oktober 2024 - <strong>Status</strong>: Draft
+for Review - <strong>Next Review</strong>: 15 November 2024</p>
+<hr />
+<p><em>This document has been prepared in accordance with ISO/IEC/IEEE
+29148:2018 standards for requirements engineering and ISO/IEC 25010:2011
+for system and software quality requirements.</em></p>
+</body>
+</html>
